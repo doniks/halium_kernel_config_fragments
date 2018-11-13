@@ -2,89 +2,89 @@
 # all the "optional" configs
 
 # systemd (optional): http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_AUTOFS4_FS=y	
+CONFIG_AUTOFS4_FS=y
 # connman (optional): support tethering, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=19fe7cad485afa6a7a5cc4aa75615ce8b7b8d376
-CONFIG_BRIDGE=y   
+CONFIG_BRIDGE=y
 # connman (optional): support tethering, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=19fe7cad485afa6a7a5cc4aa75615ce8b7b8d376
 CONFIG_IP_NF_TARGET_MASQUERADE=y
 # connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
-CONFIG_IP_NF_IPTABLES=y	
+CONFIG_IP_NF_IPTABLES=y
 # connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
-CONFIG_IP_MULTIPLE_TABLES=y	
+CONFIG_IP_MULTIPLE_TABLES=y
 # connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
-CONFIG_NETFILTER_NETLINK_ACCT=y	
+CONFIG_NETFILTER_NETLINK_ACCT=y
 # connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
-CONFIG_NETFILTER_XT_MATCH_NFACCT=y	
+CONFIG_NETFILTER_XT_MATCH_NFACCT=y
 # connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=115cb9cbd3cdda00784e58a4ea12b42d128732b4
-CONFIG_NETFILTER_XT_CONNMARK=y	
+CONFIG_NETFILTER_XT_CONNMARK=y
 # connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=115cb9cbd3cdda00784e58a4ea12b42d128732b4
-CONFIG_NETFILTER_XT_TARGET_CONNMARK=y	
+CONFIG_NETFILTER_XT_TARGET_CONNMARK=y
 # connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=115cb9cbd3cdda00784e58a4ea12b42d128732b4
-CONFIG_NETFILTER_XT_MATCH_CONNMARK=y	
+CONFIG_NETFILTER_XT_MATCH_CONNMARK=y
 
 # systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_CGROUP_FREEZER=y	
+CONFIG_CGROUP_FREEZER=y
 # systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_CGROUP_DEVICE=y	
+CONFIG_CGROUP_DEVICE=y
 # systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_CGROUP_CPUACCT=y	
+CONFIG_CGROUP_CPUACCT=y
 # systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version >= 3.10
-CONFIG_CGROUP_MEM_RES_CTLR=y	
+CONFIG_CGROUP_MEM_RES_CTLR=y
 # systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version >= 3.10
-CONFIG_CGROUP_MEM_RES_CTLR_SWAP=y	
+CONFIG_CGROUP_MEM_RES_CTLR_SWAP=y
 # systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version >= 3.10
-CONFIG_CGROUP_MEM_RES_CTLR_KMEM=y	
+CONFIG_CGROUP_MEM_RES_CTLR_KMEM=y
 # systemd (optional, but recommended): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version < 3.10
-CONFIG_MEMCG=y	
+CONFIG_MEMCG=y
 # systemd (optional, but recommended): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version < 3.10
-CONFIG_MEMCG_SWAP=y	
+CONFIG_MEMCG_SWAP=y
 # systemd (optional, but recommended): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version < 3.10
-CONFIG_MEMCG_KMEM=y	
+CONFIG_MEMCG_KMEM=y
 # systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_CGROUP_PERF=y	
+CONFIG_CGROUP_PERF=y
 # systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_CGROUP_SCHED=y	
+CONFIG_CGROUP_SCHED=y
 # systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_BLK_CGROUP=y	
+CONFIG_BLK_CGROUP=y
 # systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_NET_CLS_CGROUP=y	
+CONFIG_NET_CLS_CGROUP=y
 # systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_NETPRIO_CGROUP=y	
+CONFIG_NETPRIO_CGROUP=y
 
 # systemd-bootchart (optional): http://cgit.freedesktop.org/systemd/systemd/commit/README?id=f1c24fea94e19cf2108abbeed1d36ded7102ab98
-CONFIG_SCHEDSTATS=y	
+CONFIG_SCHEDSTATS=y
 # systemd-bootchart (optional): http://cgit.freedesktop.org/systemd/systemd/commit/README?id=f1c24fea94e19cf2108abbeed1d36ded7102ab98
-CONFIG_SCHED_DEBUG=y	
+CONFIG_SCHED_DEBUG=y
 
 # Bluez (optional): Needed if bluez used as bluetooth stack
-CONFIG_BT=y	
+CONFIG_BT=y
 # Bluez (optional): Needed if bluez used as bluetooth stack
-CONFIG_BT_RFCOMM=y	
+CONFIG_BT_RFCOMM=y
 # Bluez (optional): Needed if bluez used as bluetooth stack
-CONFIG_BT_HCIUART=y     
+CONFIG_BT_HCIUART=y
 # Bluez (optional): Needed if bluez used as bluetooth stack
-CONFIG_BT_HCIUART_H4=y	
+CONFIG_BT_HCIUART_H4=y
 # Bluez (optional): Causes problems with bluez thus disabling is recommended.
-CONFIG_BT_MSM_SLEEP=n	
+CONFIG_BT_MSM_SLEEP=n
 # optional: Support HID devices
-CONFIG_HIDRAW=y	
+CONFIG_HIDRAW=y
 
 # optional, required for systemd readahead.
-CONFIG_FANOTIFY=y	
+CONFIG_FANOTIFY=y
 
 # optional, but highly recommended
-CONFIG_RTC_DRV_CMOS=y	
+CONFIG_RTC_DRV_CMOS=y
 
 # systemd (optional): strongly recommended, http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_TMPFS_XATTR=y	
+CONFIG_TMPFS_XATTR=y
 # systemd (optional): strongly recommended, http://cgit.freedesktop.org/systemd/systemd/commit/README?id=f28cbd0382ca53baa99803bbc907a469fbf68128
-CONFIG_SECCOMP=y	
+CONFIG_SECCOMP=y
 
 # optional, enables kernel namespaces for systemd-nspawn containers
-CONFIG_UTS_NS=y	
+CONFIG_UTS_NS=y
 # optional, enables kernel namespaces for systemd-nspawn containers
-CONFIG_IPC_NS=y	
+CONFIG_IPC_NS=y
 # optional, enables kernel namespaces for systemd-nspawn containers
-CONFIG_PID_NS=y	
+CONFIG_PID_NS=y
 # optional, enables kernel namespaces for systemd-nspawn containers
-CONFIG_NET_NS=y	
+CONFIG_NET_NS=y

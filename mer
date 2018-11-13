@@ -1,73 +1,73 @@
 # based on https://github.com/mer-hybris/mer-kernel-check/blob/master/mer_verify_kernel_config
-# all the configs that are not "optional" 
+# all the configs that are not "optional"
 
 # Helping memory handling at least with Android runtime (tested on Jolla C)
-CONFIG_ANDROID_LOW_MEMORY_KILLER=y 
+CONFIG_ANDROID_LOW_MEMORY_KILLER=y
 
 # This will disable SELinux! That's ok, because hybris adaptations must not have SELinux, but if your device needs its support in kernel, set AUDIT=y and SELINUX_BOOTPARAM=y. Then disable them via kernel cmdline: audit=0 selinux=0. You can also leave audit enabled, if you don't plan to use systemd's containers: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=77b6e19458f37cfde127ec6aa9494c0ac45ad890
-CONFIG_AUDIT=n	
+CONFIG_AUDIT=n
 
 # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_CGROUPS=y       
+CONFIG_CGROUPS=y
 
 # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_DEVTMPFS=y       
+CONFIG_DEVTMPFS=y
 CONFIG_DUMMY=n
 # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=001809282918f273d372f1ee09d10b783c18a474
-CONFIG_FHANDLE=y	
+CONFIG_FHANDLE=y
 
 # Ensure that we support UTF8 filenames.
-CONFIG_NLS_UTF8=y	
+CONFIG_NLS_UTF8=y
 
 # UNIX sockets option is required to run Mer
-CONFIG_UNIX=y	
+CONFIG_UNIX=y
 # Inter Process Communication option is required to run Mer
-CONFIG_SYSVIPC=y	
+CONFIG_SYSVIPC=y
 # Mer uses ext4 as rootfs by default
-CONFIG_EXT4_FS=y	
+CONFIG_EXT4_FS=y
 
 # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_INOTIFY_USER=y	
+CONFIG_INOTIFY_USER=y
 # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
-CONFIG_IPV6=y	
+CONFIG_IPV6=y
 
 # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_SIGNALFD=y	
+CONFIG_SIGNALFD=y
 # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_TIMERFD=y	
+CONFIG_TIMERFD=y
 # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_EPOLL=y	
+CONFIG_EPOLL=y
 # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=41938693e76c32161d2b3b83253ce996468cbf9b
-CONFIG_NET=y	
+CONFIG_NET=y
 # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_SYSFS=y	
+CONFIG_SYSFS=y
 # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=06d461ee6f3da6650e6d023d7828455752d70b0b
-CONFIG_PROC_FS=y	
+CONFIG_PROC_FS=y
 # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_SYSFS_DEPRECATED=n	
+CONFIG_SYSFS_DEPRECATED=n
 # systemd: required by hybris-boot init-script, if you want pam_systemd.so to setup your "seats". http://cgit.freedesktop.org/systemd/systemd/commit/README?id=77b6e19458f37cfde127ec6aa9494c0ac45ad890
-CONFIG_TMPFS_POSIX_ACL=y	
+CONFIG_TMPFS_POSIX_ACL=y
 
 
 # ofono: http://git.kernel.org/?p=network/ofono/ofono.git;a=blob;f=README;h=413d789e5f9e96024986f5116d3c8aff0c9f15b8;hb=HEAD#l28
-CONFIG_TUN=y   
+CONFIG_TUN=y
 # should be empty, if you want to use systemd without initramfs. Also systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_UEVENT_HELPER_PATH=""	
+CONFIG_UEVENT_HELPER_PATH=""
 # it's actually needed by some Lollipop based devices; systemd(optional): http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_FW_LOADER_USER_HELPER=n	
+CONFIG_FW_LOADER_USER_HELPER=n
 # Required for virtual consoles
-CONFIG_VT=y	
+CONFIG_VT=y
 # ext4 filesystem requires this in order to support filesysetms with huge_file feature, which is enabled by default by mke2fs.ext4
-CONFIG_LBDAF=y	
+CONFIG_LBDAF=y
 # If device uses watchdogs with dsme (https://github.com/nemomobile/dsme), this option should be enabled or watchdog does not protect the device in case dsme crashes.
-CONFIG_WATCHDOG_NOWAYOUT=y	
+CONFIG_WATCHDOG_NOWAYOUT=y
 # rich-core-dumper (https://github.com/mer-tools/sp-rich-core/) needs this to collect all data for environment recreation.
-CONFIG_CHECKPOINT_RESTORE=y	
+CONFIG_CHECKPOINT_RESTORE=y
 # Required by hybris-boot Android.mk
-CONFIG_RD_GZIP=y	
+CONFIG_RD_GZIP=y
 # Required by hybris-boot init-script
-CONFIG_IKCONFIG_PROC=y	
+CONFIG_IKCONFIG_PROC=y
 # Required by hybris-boot init-script
-CONFIG_DEVTMPFS_MOUNT=y	
+CONFIG_DEVTMPFS_MOUNT=y
 # Required by hybris, SELinux needs to be disabled. Leave as not set, if you have unset AUDIT (read more about the CONFIG_AUDIT flag)
-CONFIG_SECURITY_SELINUX_BOOTPARAM=y	
+CONFIG_SECURITY_SELINUX_BOOTPARAM=y

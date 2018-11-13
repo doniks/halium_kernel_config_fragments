@@ -8,7 +8,7 @@ CONFIG_PID_NS=y
 CONFIG_USER_NS=y
 CONFIG_NET_NS=y
 # multiple /dev/pts instances (< 4.7)
-DEVPTS_MULTIPLE_INSTANCES=y 
+DEVPTS_MULTIPLE_INSTANCES=y
 
 
 # control groups
@@ -16,7 +16,7 @@ CONFIG_CGROUPS=y
 
 # I can't figure out what lxc-checkconfig does here ... under some circumstances it seems to expect that this should be enabled ... dunno
 # cgroup namespace
-# CONFIG_CGROUPS_NS=y 
+# CONFIG_CGROUPS_NS=y
 
 CONFIG_CGROUPS_DEVICE=y
 CONFIG_CGROUPS_SCHED=y
@@ -25,9 +25,9 @@ CONFIG_CGROUPS_CPUACCT=y
 
 # Cgroup memory controller:
 # if >= 3.6
-#CONFIG_MEMCG=y               
+#CONFIG_MEMCG=y
 # else
-CONFIG_CGROUP_MEM_RES_CTLR=y   
+CONFIG_CGROUP_MEM_RES_CTLR=y
 
 
 # misc
@@ -45,7 +45,7 @@ CONFIG_IP6_NF_TARGET_MASQUERADE=y
 CONFIG_NETFILTER_XT_TARGET_CHECKSUM=y
 CONFIG_NETFILTER_XT_MATCH_COMMENT=y
 # FUSE (for use with lxcfs)
-CONFIG_FUSE_FS=y 
+CONFIG_FUSE_FS=y
 
 
 # Checkpoint/Restore
