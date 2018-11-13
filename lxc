@@ -16,11 +16,11 @@ CONFIG_CGROUPS=y
 
 # I can't figure out what lxc-checkconfig does here ... under some circumstances it seems to expect that this should be enabled ... dunno
 # cgroup namespace
-# CONFIG_CGROUPS_NS=y
+# CONFIG_CGROUP_NS=y
 
-CONFIG_CGROUPS_DEVICE=y
-CONFIG_CGROUPS_SCHED=y
-CONFIG_CGROUPS_CPUACCT=y
+CONFIG_CGROUP_DEVICE=y
+CONFIG_CGROUP_SCHED=y
+CONFIG_CGROUP_CPUACCT=y
 
 
 # Cgroup memory controller:
