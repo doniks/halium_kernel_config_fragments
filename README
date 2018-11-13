@@ -1,0 +1,52 @@
+This repository contains kernel config fragmets which are useful for Halium porting. Use the `scripts/kconfig/merge_config.sh` to apply them to your own kernel config.
+
+For the examples below I assume that:
+ - You are in the root of the kernel sources
+ - The environment variables $FRAGMENTS contains the path where you checked out this repository
+ - $KCONFIG is the path to your kernel config file
+ - merge_config.sh writes the result .config file in your local directory. You need manually copy it back: `cp .config $KCONFIG`
+
+0. Set the variables - Adjust the paths as needed!
+export FRAGMENTS=~/docs/devel/halium_kernel_patching
+export KCONFIG=~/docs/devel/halium/kernel/google/msm/arch/arm/configs/lineageos_flo_defconfig
+
+1. Minimal halium config so you can read kernel config and get kernel log from previous boot
+./scripts/kconfig/merge_config.sh -m $KCONFIG $FRAGMENTS/halium
+
+2. Apply the non-optional Mer configs
+./scripts/kconfig/merge_config.sh -m $KCONFIG $FRAGMENTS/mer
+
+3. If you want you can also apply the optional Mer configs
+./scripts/kconfig/merge_config.sh -m $KCONFIG $FRAGMENTS/mer_optional
+
+4. Configs needed for lxc container
+./scripts/kconfig/merge_config.sh -m $KCONFIG $FRAGMENTS/lxc
+
+5. If you want to use halium-boot and UBports, you also need the following
+./scripts/kconfig/merge_config.sh -m $KCONFIG $FRAGMENTS/halium-boot
+
+Notes:
+
+a) You can carry changes over from one kernel to another. For example, assume you spent much effort tuning and tweaking the kernel config using some kernel fork. But now you found some other repository that might have a better working fork and you want to carry your config changes over without starting from scratch and without overwriting everything in the new kernel config:
+
+# create a config fragment with what you changed between original_config and my_improved_config
+./scripts/diffconfig -m original_config my_improved_config > my_improvements
+
+# now apply them to the new_config
+./scripts/kconfig/merge_config.sh my_improvements new_config 
+
+b) The kernel also contains a script to query/set an individual config. Maybe this is helpful to some:
+
+./scripts/config -h
+./scripts/config --file $KCONFIG --state FOO_BAR
+./scripts/config --file $KCONFIG --disable FOO_BAR
+
+c) You can apply multiple patches at once, e.g. `./scripts/kconfig/merge_configs.sh -m $KCONFIG $FRAGMENTS/halium $FRAGMENTS/mer $FRAGMENTS/lxc` if you are sure you don't want to compile and test in between.
+
+d) Yes there are multiple other kernel config checkers/fixers out there. I wasn't satisfied with any of them. See a few below. Use what suits you best. The fragments in this repository are mostly based on these other checkers/fixers below
+
+https://github.com/janimo/phablet-porting-scripts/blob/master/kernel/check-config
+https://github.com/Halium/halium-boot/blob/master/check-kernel-config
+https://github.com/mer-hybris/mer-kernel-check/blob/master/mer_verify_kernel_config
+https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh
+https://github.com/lxc/lxc/blob/master/src/lxc/cmd/lxc-checkconfig.in

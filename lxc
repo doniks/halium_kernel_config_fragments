@@ -1,0 +1,60 @@
+# based on lxc-checkconfig
+
+# Namespaces
+CONFIG_NAMESPACES=y
+CONFIG_UTS_NS=y
+CONFIG_IPC_NS=y
+CONFIG_PID_NS=y
+CONFIG_USER_NS=y
+CONFIG_NET_NS=y
+# multiple /dev/pts instances (< 4.7)
+DEVPTS_MULTIPLE_INSTANCES=y 
+
+
+# control groups
+CONFIG_CGROUPS=y
+
+# I can't figure out what lxc-checkconfig does here ... under some circumstances it seems to expect that this should be enabled ... dunno
+# cgroup namespace
+# CONFIG_CGROUPS_NS=y 
+
+CONFIG_CGROUPS_DEVICE=y
+CONFIG_CGROUPS_SCHED=y
+CONFIG_CGROUPS_CPUACCT=y
+
+
+# Cgroup memory controller:
+# if >= 3.6
+#CONFIG_MEMCG=y               
+# else
+CONFIG_CGROUP_MEM_RES_CTLR=y   
+
+
+# misc
+CONFIG_SMP=y
+CONFIG_CPUSETS=y
+CONFIG_VETH=y
+CONFIG_MACVLAN=y
+CONFIG_VLAN_8021Q=y
+CONFIG_BRIDGE=y
+CONFIG_NETFILTER_ADVANCED=y
+CONFIG_NF_NAT_IPV4=y
+CONFIG_NF_NAT_IPV6=y
+CONFIG_IP_NF_TARGET_MASQUERADE=y
+CONFIG_IP6_NF_TARGET_MASQUERADE=y
+CONFIG_NETFILTER_XT_TARGET_CHECKSUM=y
+CONFIG_NETFILTER_XT_MATCH_COMMENT=y
+# FUSE (for use with lxcfs)
+CONFIG_FUSE_FS=y 
+
+
+# Checkpoint/Restore
+CONFIG_CHECKPOINT_RESTORE=y
+CONFIG_FHANDLE=y
+CONFIG_EVENTFD=y
+CONFIG_EPOLL=y
+CONFIG_UNIX_DIAG=y
+CONFIG_INET_DIAG=y
+CONFIG_PACKET_DIAG=y
+CONFIG_NETLINK_DIAG=y
+

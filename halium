@@ -1,0 +1,17 @@
+# taken from docs.halium.org
+
+# provide /proc/config.gz
+CONFIG_IKCONFIG=y
+CONFIG_IKCONFIG_PROC=y
+
+# provied /proc/last_kmsg <= 3.4
+CONFIG_ANDROID_RAM_CONSOLE=y
+CONFIG_ANDROID_RAM_CONSOLE_ENABLE_VERBOSE=y
+
+# provide /sys/fs/pstore/console-ramoops > 3.4
+
+CONFIG_PSTORE=y
+CONFIG_PSTORE_CONSOLE=y
+CONFIG_PSTORE_PMSG=y
+CONFIG_PSTORE_RAM=y
+
