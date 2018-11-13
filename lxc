@@ -8,7 +8,7 @@ CONFIG_PID_NS=y
 CONFIG_USER_NS=y
 CONFIG_NET_NS=y
 # multiple /dev/pts instances (< 4.7)
-DEVPTS_MULTIPLE_INSTANCES=y
+CONFIG_DEVPTS_MULTIPLE_INSTANCES=y
 
 
 # control groups
