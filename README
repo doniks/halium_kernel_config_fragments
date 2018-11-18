@@ -1,54 +1,39 @@
-This repository contains kernel config fragmets which are useful for Halium porting. Use the `scripts/kconfig/merge_config.sh` to apply them to your own kernel config.
+This repository contains
 
-For the examples below I assume that:
- - You are in the root of the kernel sources
- - The environment variables $FRAGMENTS contains the path where you checked out this repository
- - $KCONFIG is the path to your kernel config file
- - merge_config.sh writes the result .config file in your local directory. You need manually copy it back: `cp .config $KCONFIG`
+1) a tool to check and fix a kernel config based on a give fragment of kernel configs.
+b) a set of config fragmets which are useful for Halium porting. Normally you will want to apply the fragments `halium`, `mer` and `lxc`. Potentially you also want `mer_optional` and/or `halium-boot`.
 
-0. Set the variables - Adjust the paths as needed!
-export FRAGMENTS=~/docs/devel/halium_kernel_patching
-export KCONFIG=~/docs/devel/halium/kernel/google/msm/arch/arm/configs/lineageos_flo_defconfig
+USAGE:
 
-1. Minimal halium config so you can read kernel config and get kernel log from previous boot
-./scripts/kconfig/merge_config.sh -m $KCONFIG $FRAGMENTS/halium
+./check-config [-w] KERNELCONFIG KERNELCONFIGFRAGMENT
 
-2. Apply the non-optional Mer configs
-./scripts/kconfig/merge_config.sh -m $KCONFIG $FRAGMENTS/mer
+EXAMPLE:
 
-3. If you want you can also apply the optional Mer configs
-./scripts/kconfig/merge_config.sh -m $KCONFIG $FRAGMENTS/mer_optional
+./check-config ~/halium/kernel/google/msm/arch/arm/config/lineageos_flo_defconfig mer
 
-4. Configs needed for lxc container
-./scripts/kconfig/merge_config.sh -m $KCONFIG $FRAGMENTS/lxc
+FRAGMENTS:
 
-5. If you want to use halium-boot and UBports, you also need the following
-./scripts/kconfig/merge_config.sh -m $KCONFIG $FRAGMENTS/halium-boot
+* halium: from the guide docs.halium.org and the hybris-boot initrd
+* mer: the non-optional configs from [1]
+* mer_optional: the optional configs from [1]
+* lxc: from lxc-checkconfig [2]
+* halium-boot: from halium-boot [3]
 
-Notes:
+NOTES:
 
-a) You can carry changes over from one kernel to another. For example, assume you spent much effort tuning and tweaking the kernel config using some kernel fork. But now you found some other repository that might have a better working fork and you want to carry your config changes over without starting from scratch and without overwriting everything in the new kernel config:
+a) There are useful scripts in the kernel source to work with kernel configs (config [6], merge_config.sh [7] ,diffconfig [8]).
 
-# create a config fragment with what you changed between original_config and my_improved_config
-./scripts/diffconfig -m original_config my_improved_config > my_improvements
+b) This script, together with [8] allows you to easily store your config changes. Also you can easily carry the changes over rom one kernel to another:
+diffconfig -m ORIGINALKONFIG YOURCONFIG > my_changes
+./check-config -w NEWKONFIG my_changes 
 
-# now apply them to the new_config
-./scripts/kconfig/merge_config.sh my_improvements new_config 
+c) Yes there are multiple other kernel config checkers/fixers out there that cover similar use cases that this script. I wasn't satisfied with any of them. See comments below ([1], [2], [3], [4], [5]). The fragments in this repository are mostly based on these other checkers/fixers. The script itself is originally based on [1]. Use what suits you best. 
 
-b) The kernel also contains a script to query/set an individual config. Maybe this is helpful to some:
-
-./scripts/config -h
-./scripts/config --file $KCONFIG --state FOO_BAR
-./scripts/config --file $KCONFIG --disable FOO_BAR
-
-c) You can apply multiple patches at once, e.g. `./scripts/kconfig/merge_configs.sh -m $KCONFIG $FRAGMENTS/halium $FRAGMENTS/mer $FRAGMENTS/lxc` if you are sure you don't want to compile and test in between.
-
-d) Yes there are multiple other kernel config checkers/fixers out there. I wasn't satisfied with any of them. See a few below. Use what suits you best. The fragments in this repository are mostly based on these other checkers/fixers below
-
-https://github.com/janimo/phablet-porting-scripts/blob/master/kernel/check-config - hardcoded values
-https://github.com/Halium/halium-boot/blob/master/check-kernel-config - pretty much the same as janimo script
-https://github.com/mer-hybris/mer-kernel-check/blob/master/mer_verify_kernel_config - hardcoded values, supports y,m alternatives
-https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh - hardcoded values, checks more than just configs
-https://github.com/lxc/lxc/blob/master/src/lxc/cmd/lxc-checkconfig.in - the output is not very helpful to know what configuration to adjust, checks more than just configs
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/scripts/config - a piece of the functionality but would need a wrapper script anyway and doesn't handle quoted values right
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/scripts/kconfig/merge_config.sh - can read from a file, but very simplistic, e.g. no comments in inputfile
+[1] https://github.com/mer-hybris/mer-kernel-check/blob/master/mer_verify_kernel_config - hardcoded values, supports y,m alternatives
+[2] https://github.com/lxc/lxc/blob/master/src/lxc/cmd/lxc-checkconfig.in - the output is not very helpful to know what configuration to adjust, checks more than just configs
+[3] https://github.com/Halium/halium-boot/blob/master/check-kernel-config - pretty much the same as janimo script [4]
+[4] https://github.com/janimo/phablet-porting-scripts/blob/master/kernel/check-config - hardcoded values
+[5] https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh - hardcoded values, checks more than just configs
+[6] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/scripts/config - a piece of the functionality but would need a wrapper script anyway and doesn't handle quoted values right
+[7] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/scripts/kconfig/merge_config.sh - can read from a file, but very simplistic, e.g. no comments in inputfile
+[8] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/scripts/diffconfig
