@@ -1,0 +1,62 @@
+#!/bin/bash
+
+set -e
+
+if [ $# -ne 2 ] ; then
+    echo "
+USAGE: patch_config KCONFIG KCONFIGFRAGMENT
+EXAMPLE: ./patch_config ../halium/kernel/google/msm/arch/arm/config/lineageos_flo_defconfig mer 
+"
+fi
+
+config=$1
+patch=$2
+
+if [ ! -w $config ] ; then
+    echo "Cannot write to kernel config file \"$config\""
+    exit 1
+fi
+if [ ! -e $patch ] ; then
+    echo "Cannot read from kernel config fragment \"$patch\""
+    exit 1
+fi
+
+# get kernel root directory from config file name
+# assume it is in arch/arm/config, so we go three dirs up
+kernel_root=$(dirname $config)/../../../
+
+# get `config` tool from kernel
+config_tool=${config_tool:-$kernel_root/scripts/config}
+
+if [ ! -x $config_tool ] ; then
+    echo "No executable `config` script found at \"$config_tool\""
+    exit 1
+fi
+
+config_values=$( sed -ne '
+s/^CONFIG_\([a-zA-Z0-9_]*\)=.*/\1/p;
+s/^# *CONFIG_\([a-zA-Z0-9_]\)* is not set/\1/p;
+' < $patch )
+
+backup=${config}_$(date +%Y%m%d-%H%M%S)
+cp $config $backup
+
+for c in $config_values ; do 
+    current=$($config_tool --file $config --state $c)
+    target=$($config_tool --file $patch --state $c)
+    case $target in
+	$current)
+	    true
+	    # nothing to do 
+	    ;;
+	y|n|m)
+	    $config_tool --file $config --set-val $c $target
+	    echo "$c: $current -> $target"
+	    ;;
+	*)
+	    $config_tool --file $config --set-val $c $target
+	    echo "$c: $current -> $target"
+	    exit 1
+	    ;;
+    esac
+done
