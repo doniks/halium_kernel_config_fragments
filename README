@@ -45,8 +45,10 @@ c) You can apply multiple patches at once, e.g. `./scripts/kconfig/merge_configs
 
 d) Yes there are multiple other kernel config checkers/fixers out there. I wasn't satisfied with any of them. See a few below. Use what suits you best. The fragments in this repository are mostly based on these other checkers/fixers below
 
-https://github.com/janimo/phablet-porting-scripts/blob/master/kernel/check-config
-https://github.com/Halium/halium-boot/blob/master/check-kernel-config
-https://github.com/mer-hybris/mer-kernel-check/blob/master/mer_verify_kernel_config
-https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh
-https://github.com/lxc/lxc/blob/master/src/lxc/cmd/lxc-checkconfig.in
+https://github.com/janimo/phablet-porting-scripts/blob/master/kernel/check-config - hardcoded values
+https://github.com/Halium/halium-boot/blob/master/check-kernel-config - pretty much the same as janimo script
+https://github.com/mer-hybris/mer-kernel-check/blob/master/mer_verify_kernel_config - hardcoded values, supports y,m alternatives
+https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh - hardcoded values, checks more than just configs
+https://github.com/lxc/lxc/blob/master/src/lxc/cmd/lxc-checkconfig.in - the output is not very helpful to know what configuration to adjust, checks more than just configs
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/scripts/config - a piece of the functionality but would need a wrapper script anyway and doesn't handle quoted values right
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/scripts/kconfig/merge_config.sh - can read from a file, but very simplistic, e.g. no comments in inputfile
